@@ -1,14 +1,21 @@
 const Usuario = require('./models/Usuario');
 
-salvar({
-    nome:"Pedro",
-    email:"pedro@gmail.com"
-  });
+listarTodos();
 
-  async function salvar(obj){
-    const usuario = Usuario.build(obj);
-    await usuario.save();
-  }
+async function listarTodos(){
+  const usuarios = await Usuario.findAll();
+  console.log(usuarios)
+}
+
+// salvar({
+//     nome:"Pedro",
+//     email:"pedro@gmail.com"
+//   });
+
+//   async function salvar(obj){
+//     const usuario = Usuario.build(obj);
+//     await usuario.save();
+//   }
 
   // sincronizar();
 
