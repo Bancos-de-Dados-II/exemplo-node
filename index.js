@@ -1,36 +1,20 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const Usuario = require('./models/Usuario');
 
-const sequelize = new Sequelize('aula', 'postgres', 'postgres', {
-    host: 'localhost',
-    dialect: 'postgres'
-});
-
-const Usuario = sequelize.define('Usuario', {
-    // Model attributes are defined here
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    nome: {
-      type: DataTypes.STRING
-      // allowNull defaults to true
-    }
-  }, {
-    // Other model options go here
+salvar({
+    nome:"Maria",
+    email:"maria@gmail.com"
   });
 
-  sincronizar();
-
-  async function sincronizar(){
-    await Usuario.sync();
+  async function salvar(obj){
+    const usuario = Usuario.build(obj);
+    await usuario.save();
   }
 
+  // sincronizar();
+
+  // async function sincronizar(){
+  //   await Usuario.sync();
+  // }
 
 // conectar();
 // async function conectar(){
