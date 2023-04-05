@@ -1,8 +1,8 @@
 const Usuario = require('./models/Usuario');
 
 salvar({
-    nome:"Maria",
-    email:"maria@gmail.com"
+    nome:"Pedro",
+    email:"pedro@gmail.com"
   });
 
   async function salvar(obj){
