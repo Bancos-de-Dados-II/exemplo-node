@@ -5,4 +5,13 @@ const listarUsuarios = async (req,res) => {
     res.status(200).send(usuarios);
 }
 
-module.exports = {listarUsuarios};
+const buscarPelaChave = async (req,res) =>{
+    const usuario = await Usuario.findByPk(req.params.id);
+    if(usuario == null){
+        res.status(404).send('Usuário não encontrado');
+    }else{
+        res.status(200).send(usuario);
+    }
+}
+
+module.exports = {listarUsuarios, buscarPelaChave};

@@ -4,9 +4,7 @@ const port = 3001;
 const usuarioController = require('./controllers/UsuarioController');
 
 app.get('/usuarios', usuarioController.listarUsuarios);
-app.get('/usuarios/:id', (req, res) => {
-  res.send('Hello World!')
-});
+app.get('/usuarios/:id', usuarioController.buscarPelaChave);
 app.post('/usuarios', (req, res) => {
   res.send('Hello World!')
 });
