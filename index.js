@@ -1,10 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+const usuarioController = require('./controllers/UsuarioController');
 
-app.get('/usuarios', (req, res) => {
-  res.send('Hello World!')
-});
+app.get('/usuarios', usuarioController.listarUsuarios);
 app.get('/usuarios/:id', (req, res) => {
   res.send('Hello World!')
 });
