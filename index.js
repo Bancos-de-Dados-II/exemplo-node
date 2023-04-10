@@ -1,34 +1,24 @@
-const Usuario = require('./models/Usuario');
+const express = require('express');
+const app = express();
+const port = 3001;
 
-listarTodos();
+app.get('/usuarios', (req, res) => {
+  res.send('Hello World!')
+});
+app.get('/usuarios/:id', (req, res) => {
+  res.send('Hello World!')
+});
+app.post('/usuarios', (req, res) => {
+  res.send('Hello World!')
+});
+app.delete('/usuarios/:id', (req, res) => {
+  res.send('Hello World!')
+});
+app.put('/usuarios/:id', (req, res) => {
+  res.send('Hello World!')
+});
 
-async function listarTodos(){
-  const usuarios = await Usuario.findAll();
-  console.log(usuarios)
-}
 
-// salvar({
-//     nome:"Pedro",
-//     email:"pedro@gmail.com"
-//   });
-
-//   async function salvar(obj){
-//     const usuario = Usuario.build(obj);
-//     await usuario.save();
-//   }
-
-  // sincronizar();
-
-  // async function sincronizar(){
-  //   await Usuario.sync();
-  // }
-
-// conectar();
-// async function conectar(){
-//     try {
-//         await sequelize.authenticate();
-//         console.log('Connection has been established successfully.');
-//       } catch (error) {
-//         console.error('Unable to connect to the database:', error);
-//       }
-// }
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+});
