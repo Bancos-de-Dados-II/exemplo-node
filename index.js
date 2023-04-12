@@ -7,9 +7,7 @@ const usuarioController = require('./controllers/UsuarioController');
 app.get('/usuarios', usuarioController.listarUsuarios);
 app.get('/usuarios/:id', usuarioController.buscarPelaChave);
 app.post('/usuarios', usuarioController.salvarUsuario);
-app.delete('/usuarios/:id', (req, res) => {
-  res.send('Hello World!')
-});
+app.delete('/usuarios/:id', usuarioController.deletarUsuario);
 app.put('/usuarios/:id', (req, res) => {
   res.send('Hello World!')
 });

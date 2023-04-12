@@ -25,4 +25,14 @@ const salvarUsuario = async (req,res) =>{
     }    
 }
 
-module.exports = {listarUsuarios, buscarPelaChave, salvarUsuario};
+const deletarUsuario = async (req,res) =>{
+    const usuario = await Usuario.findByPk(req.params.id);
+    if(usuario == null){
+        res.status(404).send('Usuário não encontrado');
+    }else{
+        await usuario.destroy();
+        res.status(200).send(`Usuário ${req.params.id} excluído`);
+    }
+}
+
+module.exports = {listarUsuarios, buscarPelaChave, salvarUsuario, deletarUsuario};
