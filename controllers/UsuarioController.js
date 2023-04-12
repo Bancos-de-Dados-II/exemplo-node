@@ -14,4 +14,15 @@ const buscarPelaChave = async (req,res) =>{
     }
 }
 
-module.exports = {listarUsuarios, buscarPelaChave};
+const salvarUsuario = async (req,res) =>{
+    try{
+        const usuario = await Usuario.create(req.body);
+        if(usuario!=null){
+            res.status(201).send('Usuário criado')
+        }
+    }catch{
+        res.status(400).send('Falha ao Salvar');
+    }    
+}
+
+module.exports = {listarUsuarios, buscarPelaChave, salvarUsuario};
