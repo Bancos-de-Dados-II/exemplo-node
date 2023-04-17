@@ -5,6 +5,9 @@ const port = 3000;
 const usuarioRouter = require('./routes/UsuarioRouter');
 const pontoRouter = require('./routes/PontoRouter');
 
+const cors = require('cors');
+app.use(cors());
+
 app.use('/usuarios',usuarioRouter);
 app.use('/pontos',pontoRouter);
 

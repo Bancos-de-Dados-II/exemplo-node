@@ -7,11 +7,20 @@ const listarPontos = async (req,res) => {
 
 const salvarPonto = async (req,res) =>{
     try{
-        const Ponto = await Ponto.create(req.body);
-        if(Ponto!=null){
+        const obj = {
+            descricao: req.body.descricao,
+            geometria: { 
+                type: 'Point', 
+                coordinates: [req.body.lng, req.body.lat]
+            }
+        }
+
+        const ponto = await Ponto.create(obj);
+        if(ponto!=null){
             res.status(201).send('Usuário criado')
         }
-    }catch{
+    }catch(e){
+        console.log(e);
         res.status(400).send('Falha ao Salvar');
     }    
 }
