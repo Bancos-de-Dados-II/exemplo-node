@@ -46,4 +46,9 @@ const atualizarUsuario = async (req,res) =>{
     }
 }
 
-module.exports = {listarUsuarios, buscarPelaChave, salvarUsuario, deletarUsuario, atualizarUsuario};
+const sincronizar = async (req,res) =>{
+    await Usuario.sync();
+    res.status(200).send('Sincronizado');
+}
+
+module.exports = {listarUsuarios, buscarPelaChave, salvarUsuario, deletarUsuario, atualizarUsuario, sincronizar};
