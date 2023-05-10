@@ -19,7 +19,9 @@ const buscarPelaChave = async (req,res) =>{
         if(usuario == null){
             res.status(404).send('Usuário não encontrado');
         }else{
-            await client.set(usuario.id, JSON.stringify(usuario));
+            await client.set(usuario.id, JSON.stringify(usuario),{
+                EX: 3600
+            });
             res.status(200).send(usuario);
         }
     }
