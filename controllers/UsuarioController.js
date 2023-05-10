@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario');
+const client = require('../database/redis');
 
 const listarUsuarios = async (req,res) => {
     const usuarios = await Usuario.findAll();
@@ -6,6 +7,16 @@ const listarUsuarios = async (req,res) => {
 }
 
 const buscarPelaChave = async (req,res) =>{
+
+    const retorno = await client.get(req.params.id);
+
+    if(retorno){
+        console.log('Está no Redis');
+        return JSON.parse(retorno);
+    }else{
+        console.log('Não está no redis');
+    }
+
     const usuario = await Usuario.findByPk(req.params.id);
     if(usuario == null){
         res.status(404).send('Usuário não encontrado');
