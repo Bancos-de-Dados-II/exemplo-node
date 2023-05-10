@@ -12,17 +12,19 @@ const buscarPelaChave = async (req,res) =>{
 
     if(retorno){
         console.log('Está no Redis');
-        return JSON.parse(retorno);
+        res.send(JSON.parse(retorno));
     }else{
         console.log('Não está no redis');
+        const usuario = await Usuario.findByPk(req.params.id);
+        if(usuario == null){
+            res.status(404).send('Usuário não encontrado');
+        }else{
+            await client.set(usuario.id, JSON.stringify(usuario));
+            res.status(200).send(usuario);
+        }
     }
 
-    const usuario = await Usuario.findByPk(req.params.id);
-    if(usuario == null){
-        res.status(404).send('Usuário não encontrado');
-    }else{
-        res.status(200).send(usuario);
-    }
+    
 }
 
 const salvarUsuario = async (req,res) =>{
