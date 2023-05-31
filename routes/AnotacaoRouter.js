@@ -6,6 +6,6 @@ router.get('/', anotacaoController.listarAnotacoes);
 router.get('/:conteudo', anotacaoController.buscarPorConteudo);
 router.post('/', anotacaoController.salvarAnotacao);
 router.delete('/:id', anotacaoController.deletarAnotacao);
-router.put('/:id', (req,res)=>console.log('ok'));
+router.put('/:id', anotacaoController.atualizarAnotacao);
 
 module.exports = router;

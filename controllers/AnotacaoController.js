@@ -23,15 +23,15 @@ const deletarAnotacao = async (req,res) =>{
     }).catch(e => res.status(400).send(e));
 }
 
-// const atualizarUsuario = async (req,res) =>{
-//     const usuario = await Usuario.findByPk(req.params.id);
-//     if(usuario == null){
-//         res.status(404).send('Usuário não encontrado');
-//     }else{
-//         usuario.set(req.body);
-//         await usuario.save();
-//         res.status(200).send('Atualizado')
-//     }
-// }
+const atualizarAnotacao = async (req,res) =>{
+    const anotacao = await Anotacao.findById(req.params.id);
+    if(anotacao){
+        res.status(404).send('Anotação não encontrada');
+    }else{
+        anotacao.overwrite(req.body);
+        await anotacao.save();
+        res.status(200).send('Atualizado com sucesso')
+    }
+}
 
-module.exports = {listarAnotacoes, salvarAnotacao, buscarPorConteudo, deletarAnotacao};
+module.exports = {listarAnotacoes, salvarAnotacao, buscarPorConteudo, deletarAnotacao, atualizarAnotacao};
