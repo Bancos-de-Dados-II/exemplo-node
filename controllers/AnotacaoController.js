@@ -29,16 +29,9 @@ const listarAnotacoes = async (req,res) => {
     
 // }
 
-// const salvarUsuario = async (req,res) =>{
-//     try{
-//         const usuario = await Usuario.create(req.body);
-//         if(usuario!=null){
-//             res.status(201).send('Usuário criado')
-//         }
-//     }catch{
-//         res.status(400).send('Falha ao Salvar');
-//     }    
-// }
+const salvarAnotacao = async (req,res) =>{
+    Anotacao.create(req.body).then(result => res.send(result));
+}
 
 // const deletarUsuario = async (req,res) =>{
 //     const usuario = await Usuario.findByPk(req.params.id);
@@ -66,4 +59,4 @@ const listarAnotacoes = async (req,res) => {
 //     res.status(200).send('Sincronizado');
 // }
 
-module.exports = {listarAnotacoes};
+module.exports = {listarAnotacoes, salvarAnotacao};
