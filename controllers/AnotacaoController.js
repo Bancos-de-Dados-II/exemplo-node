@@ -1,5 +1,4 @@
 const Anotacao = require('../models/Anotacao');
-const mongoose = require('mongoose');
 
 const listarAnotacoes = async (req,res) => {
     Anotacao.find({},{_id:true, __v:false}).then(result => {
