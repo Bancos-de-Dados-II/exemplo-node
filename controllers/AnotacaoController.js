@@ -1,4 +1,5 @@
 const Anotacao = require('../models/Anotacao');
+const mongoose = require('mongoose');
 
 const listarAnotacoes = async (req,res) => {
     Anotacao.find({},{_id:true, __v:false}).then(result => {
@@ -24,14 +25,13 @@ const deletarAnotacao = async (req,res) =>{
 }
 
 const atualizarAnotacao = async (req,res) =>{
-    const anotacao = await Anotacao.findById(req.params.id);
-    if(anotacao){
-        res.status(404).send('Anotação não encontrada');
-    }else{
-        anotacao.overwrite(req.body);
-        await anotacao.save();
-        res.status(200).send('Atualizado com sucesso')
-    }
+    await Anotacao.findById(req.params.id).then(result =>{
+        if(result){
+            result.set(req.body);
+            result.save();
+            res.status(200).send('Atualizado com sucesso');
+        }
+    }).catch(e => res.status(404).send('Anotação não encontrada'));
 }
 
 module.exports = {listarAnotacoes, salvarAnotacao, buscarPorConteudo, deletarAnotacao, atualizarAnotacao};
